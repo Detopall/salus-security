@@ -3,8 +3,9 @@
 const express = require("express");
 const router = express.Router();
 const middleware = require("../middleware");
+const userController = require("../controller/user-controller");
 
-router.get("/", async (req, res) => {
+router.get("/", middleware.requireLogin, async (req, res) => {
 	const payload = {
 		pageTitle: "Home",
 		user: req.session.user,
@@ -42,5 +43,7 @@ router.get("/logout", async (req, res) => {
 	}
 });
 
+router.post("/register", userController.createUser);
+router.post("/login", userController.loginUser);
 
 module.exports = router;
