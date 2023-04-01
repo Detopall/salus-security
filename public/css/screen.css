@@ -4,6 +4,9 @@ body {
 	background-color: #4C4E52;
 	color: white;
 	font-family: 'Kanit', sans-serif;
+	height: 100vh;
+	width: 100vw;
+	margin: 5rem;
 }
 
 a {
@@ -14,6 +17,97 @@ a {
 a:hover {
 	color: yellow;
 }
+
+.home { 
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	gap: 1.8rem 1.8rem;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"user-info user-info . . ."
+		"nav main-container main-container main-container main-container"
+		"nav main-container main-container main-container main-container"
+		"nav main-container main-container main-container main-container";
+}
+
+.user-info {
+	grid-area: user-info;
+	background-color: lightgrey;
+	color: black;
+	border-radius: 1rem;
+	box-shadow: 0.1rem 0.1rem black;
+}
+
+.nav {
+	grid-area: nav;
+	background-color: lightgrey;
+	color: black;
+	display: flex;
+	flex-flow: column wrap;
+	border-radius: 1rem;
+	box-shadow: 0.1rem 0.1rem black;
+}
+
+.main-container {
+	grid-area: main-container;
+	background-color: lightgrey;
+	margin-right: 10rem;
+	color: black;
+	padding: 2rem;
+	border-radius: 1rem;
+	box-shadow: 0.1rem 0.1rem black;
+}
+
+
+.nav a {
+	display: block;
+	font-size: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	margin: 0.5rem;
+}
+
+.nav a:hover {
+	color: yellow;
+}
+
+
+/* HOME */
+
+
+.button-container {
+	margin-bottom: 5rem;
+}
+
+.button-container button {
+	font-weight: bold;
+	font-size: 2rem;
+	background-color: yellow;
+	border: solid black 0.1rem;
+	border-radius: 1rem;
+	padding: 0.5rem;
+	box-shadow: 0.1rem 0.1rem black;
+}
+
+.button-container button:hover {
+	background-color: orange;
+}
+
+.incidents-container {
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 5rem;
+	display: inline-block;
+}
+
+.incidents-container div {
+	margin-right: 5rem;
+}
+
+/* LOGIN - REGISTER PAGE */
 
 .wrapper-auth {
 	display: flex;
