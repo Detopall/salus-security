@@ -140,10 +140,16 @@ a:hover {
 	grid-template-areas:
 	"incident-labels incident-information"
 	"incident-bystanders incident-aggressors";
+	background-color: white;
 }
 
 .incident-labels {
 	grid-area: incident-labels;
+}
+
+.incident-labels span {
+	color: purple;
+	font-weight: bold;
 }
 
 .incident-information {
@@ -157,6 +163,21 @@ a:hover {
 .incident-aggressors {
 	grid-area: incident-aggressors;
 }
+
+.main-container.incident-container div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+	background-color: lightgrey;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+}
+
+.main-container.incident-container h3 {
+	font-weight: bold;
+}
+
 
 
 
