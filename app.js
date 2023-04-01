@@ -42,5 +42,7 @@ if (process.env.NODE_ENV === "development"){
 }
 
 app.use('/', require('./routes/home-auth-routes'));
+app.use('/', require('./routes/api/api'));
+
 
 app.listen(PORT, () => console.log("server listening on port: ", PORT));

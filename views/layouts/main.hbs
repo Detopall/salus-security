@@ -13,6 +13,18 @@
 	<title>{{page-title}}</title>
 </head>
 <body>
-	{{{body}}}
+	{{#if showNav}}
+		<script>
+			const USER_LOGGED_IN = {{{userJS}}};
+		</script>
+		{{{body}}}
+
+		{{#if isHome}}
+			{{{_sections.home-page}}}
+		{{/if}}
+
+	{{else}}
+		{{{body}}}
+	{{/if}}
 </body>
 </html>

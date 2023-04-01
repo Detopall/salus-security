@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 require("dotenv").config({path: './config/config.env'});
 
 const SalusIncidentSchema = new mongoose.Schema({
-	type: {type: String,required: true},
 	labels: [{type: String }],
 	aggressors: [{type: Schema.Types.ObjectId, ref: "SalusUser"}],
 	reportedBy: {type: Schema.Types.ObjectId, ref: "SalusUser"},

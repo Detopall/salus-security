@@ -10,8 +10,7 @@ router.get("/", middleware.requireLogin, async (req, res) => {
 		pageTitle: "Home",
 		user: req.session.user,
 		userJS: JSON.stringify(req.session.user),
-		showNav: true,
-		isHome: true
+		showNav: true
 	};
 	
 	res.render("home", payload);
