@@ -62,7 +62,6 @@ exports.getIncident = async (req, res) => {
 	try {
 		const incidentId = req.params.id;
 		const incident = await Incident.findById(incidentId).populate("reportedBy").populate("aggressors").lean();
-		console.log(incident);
 		return res.send(incident);
 	} catch(err) {
 		console.error(err);

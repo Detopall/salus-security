@@ -30,6 +30,7 @@ a:hover {
 		"nav main-container main-container main-container main-container"
 		"nav main-container main-container main-container main-container";
 	margin: 5rem;
+	height: 80%;
 }
 
 .user-info {
@@ -96,12 +97,13 @@ a:hover {
 	background-color: orange;
 }
 
+
 #incidents {
 	display: inline-block;
 	overflow-x: hidden;
 	overflow-y: auto;
 	scrollbar-width: none;
-	height: 6rem;
+	height: 50%;
 	width: 100%;
 	border: 0.1rem solid black;
 	border-radius: 0.5rem;
@@ -125,6 +127,7 @@ a:hover {
 #incidents .incident .labels-container .label {
 	color: purple;
 }
+
 
 
 /* INCIDENT PAGE */

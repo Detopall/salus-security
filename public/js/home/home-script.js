@@ -10,9 +10,4 @@ document.addEventListener("click", (e) => {
 	window.location.href = `/incident/${incidentId}`;
 });
 
-function getRootIdElement(element){
-	const isRoot = element.classList.contains("incident");
-	const root = isRoot ? element : element.closest(".incident");
-	return root.getAttribute("id");
-}
 
