@@ -6,7 +6,7 @@ body {
 	font-family: 'Kanit', sans-serif;
 	height: 100vh;
 	width: 100vw;
-	margin: 5rem;
+	overflow: hidden;
 }
 
 a {
@@ -29,6 +29,7 @@ a:hover {
 		"nav main-container main-container main-container main-container"
 		"nav main-container main-container main-container main-container"
 		"nav main-container main-container main-container main-container";
+	margin: 5rem;
 }
 
 .user-info {
@@ -97,10 +98,11 @@ a:hover {
 }
 
 .incidents-container {
+	display: inline-block;
 	overflow-x: hidden;
 	overflow-y: auto;
+	scrollbar-width: none;
 	height: 5rem;
-	display: inline-block;
 }
 
 .incidents-container div {
