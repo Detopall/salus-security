@@ -31,7 +31,7 @@ async function insertIncidents(){
 function incidentsHtml(incident){
 	let labels = "";
 	incident.labels.forEach(label => {
-		labels += `<span class="label"> ${label} </span>`
+		labels += `<span class="label"> / ${label} /</span>`
 	});
 
 	const timestamp = timeSince(incident.createdAt);
@@ -40,7 +40,10 @@ function incidentsHtml(incident){
 				<div class="labels-container">
 					${labels}
 				</div>
-				<span class="date">${timestamp}</span>
+				<div class="date-container">
+					<i class="fa-solid fa-stopwatch"></i>
+					<span class="date">${timestamp}</span>
+				</div>
 			</div>
 			`;
 }

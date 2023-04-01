@@ -8,7 +8,8 @@ document.addEventListener("click", async (e) => {
 	try {
 		const data = {"labels": getRandomLabels(LABELS)};
 		const response = await fetch("/api/incidents", getOptionsPost(data, "POST"));
-		console.log(response);
+		const incident = await response.json();
+		location.href = `/incident/${incident._id}`;
 	} catch (err) {
 		console.error("Something went wrong: ", err);
 	}

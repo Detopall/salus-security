@@ -18,7 +18,7 @@ a:hover {
 	color: yellow;
 }
 
-.home { 
+.page { 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -53,7 +53,6 @@ a:hover {
 .main-container {
 	grid-area: main-container;
 	background-color: lightgrey;
-	margin-right: 10rem;
 	color: black;
 	padding: 2rem;
 	border-radius: 1rem;
@@ -97,17 +96,41 @@ a:hover {
 	background-color: orange;
 }
 
-.incidents-container {
+#incidents {
 	display: inline-block;
 	overflow-x: hidden;
 	overflow-y: auto;
 	scrollbar-width: none;
-	height: 5rem;
+	height: 6rem;
+	width: 100%;
+	border: 0.1rem solid black;
+	border-radius: 0.5rem;
 }
 
-.incidents-container div {
-	margin-right: 5rem;
+#incidents .incident {
+	display: flex;
+	height: 4rem;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 1rem;
 }
+
+#incidents .incident:hover {
+	background-color: white;
+}
+
+
+#incidents .incident .labels-container .label {
+	color: purple;
+}
+
+
+/* INCIDENT PAGE */
+
+
+
 
 /* LOGIN - REGISTER PAGE */
 

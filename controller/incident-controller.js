@@ -49,7 +49,7 @@ async function addRandomAggressors(reporterUserId) {
 
 exports.getIncidents = async (req, res) => {
 	try {
-		const incidents = await Incident.find().populate("reportedBy").populate("aggressors");
+		const incidents = await Incident.find().populate("reportedBy").populate("aggressors").sort({createdAt: -1});
 		return res.send(incidents); 
 	} catch(err){
 		console.error(err);
