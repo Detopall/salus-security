@@ -40,11 +40,19 @@ async function addRandomAggressors(reporterUserId) {
 	const allUserIdsExceptReporter = await User.find({_id: {$ne: reporterUserId}}).distinct('_id');
 
   	// Shuffle the user ids and select the first randomAmount
-	const shuffledUserIds = allUserIdsExceptReporter.sort(() => Math.random() - 0.5);
+	const shuffledUserIds = allUserIdsExceptReporter.sort(() => Math.random() - randomShuffle);
 	const randomUserIds = shuffledUserIds.slice(0, randomAmount);
 
 	return randomUserIds;
 }
 
 
-
+exports.getIncidents = async (req, res) => {
+	try {
+		const incidents = await Incident.find().populate("reportedBy").populate("aggressors");
+		return res.send(incidents); 
+	} catch(err){
+		console.error(err);
+		return res.sendStatus(500);
+	}
+}
