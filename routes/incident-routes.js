@@ -8,9 +8,9 @@ router.get("/incident/:id", async (req, res) => {
 		pageTitle: "Incident",
 		user: req.session.user,
 		userJS: JSON.stringify(req.session.user),
-		showNav: true
+		showNav: true,
+		incidentId: JSON.stringify(req.params.id)
 	};
-	
 	res.render("incident-page", payload);
 });
 
