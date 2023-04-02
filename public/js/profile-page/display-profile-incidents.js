@@ -27,7 +27,6 @@ function profileHelpedHtml(incidents){
     let html = "";
     incidents.map(incident => {
         const isBystander = incident.bystanders.some(bystander => bystander._id === USER_LOGGED_IN._id);
-		console.log(isBystander);
         if (isBystander) {
             html += createProfileIncidentHtml(incident);
         }

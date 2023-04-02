@@ -1,0 +1,20 @@
+<div class="page">
+	<div class="user-info"></div>
+	{{>nav}}
+	<div class="main-container statistics-container">
+		<div class="labels-frequency-chart-container">
+			<h4> Label frequency of all incidents </h4>
+			<canvas id="labels-frequency-chart"></canvas>
+		</div>
+		<div class="bystander-chart-container">
+			<h4> Best bystanders </h4>
+			<canvas id="bystander-chart"></canvas>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer src="/js/statistics/display-statistics.js"></script>
+<script defer src="/js/display-user-info.js"></script>

@@ -212,19 +212,49 @@ a:hover {
 	flex-flow: column wrap;
 }
 
+.profile-incident {
+	padding: 0.5rem;
+	border: 0.1rem solid black;
+	border-radius: 1rem;
+}
+
 .profile-incident .labels-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.profile-incident .label {
-	background-color: #cc00ff;
-	margin-left: 1rem;
+.profile-incident .aggressor, .profile-incident .bystander, .profile-incident .label {
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 	color: white;
 	font-weight: bold;
+	margin-right: 1rem;
+}
+
+.profile-reported-aggressors, .profile-reported-bystanders {
+	margin: 1rem 0 1rem 0;
+}
+
+.profile-incident .label {
+	background-color: #cc00ff;
+}
+
+.profile-incident .bystander {
+	background-color: lightblue;
+}
+
+.profile-incident .aggressor {
+	background-color: red;
+}
+
+/* STATISTICS PAGE */
+
+.main-container.statistics-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
 }
 
 
