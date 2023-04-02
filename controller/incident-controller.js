@@ -20,7 +20,7 @@ exports.createIncident = async (req, res) => {
 
 
 	const incident = new Incident(incidentData);
-	await addIncidentToUsers(incident._id, userId, randomAggressors);
+	await addIncidentToUsers(incident._id, userId, randomAggressors, req);
 
 	try {
 		await incident.save();
@@ -50,7 +50,7 @@ async function addRandomAggressors(reporterUserId) {
 	return randomUserIds;
 }
 
-async function addIncidentToUsers(incidentId, userId, randomAggressors){
+async function addIncidentToUsers(incidentId, userId, randomAggressors, req){
 	const promises = randomAggressors.map((aggressor) => {
 		return User.findByIdAndUpdate(
 			aggressor._id,
@@ -61,7 +61,7 @@ async function addIncidentToUsers(incidentId, userId, randomAggressors){
 		await Promise.all(promises);
 
 	// Update reporter's reportedIncidents field
-	await User.findByIdAndUpdate(
+	req.session.user = await User.findByIdAndUpdate(
 		userId,
 		{ $push: { incidentsReported: incidentId } },
 		{ new: true }
@@ -87,7 +87,7 @@ exports.getIncidents = async (req, res) => {
 exports.getIncident = async (req, res) => {
 	try {
 		const incidentId = req.params.id;
-		const incident = await Incident.findById(incidentId).populate("reportedBy").populate("aggressors").lean();
+		const incident = await Incident.findById(incidentId).populate("reportedBy").populate("aggressors").populate("bystanders").lean();
 		return res.send(incident);
 	} catch(err) {
 		console.error(err);
@@ -101,6 +101,30 @@ exports.endIncident = async (req, res) => {
 		const incident = await Incident.findOneAndUpdate({_id: incidentId}, {ended: true});
 		return res.send(incident);
 	} catch(err){
+		console.error(err);
+		return res.sendStatus(500);
+	}
+}
+
+exports.helpIncident = async (req, res) => {
+	try {
+		const incidentId = req.params.id;
+		const userId = req.session.user._id;
+
+		const incident = await Incident.findByIdAndUpdate(
+			incidentId,
+			{ $push: { bystanders: userId } },
+			{ new: true }
+		);
+
+		req.session.user = await User.findByIdAndUpdate(
+			userId,
+			{$push: {incidentsHelped: incidentId}},
+			{new: true}	
+		);
+
+		res.send(incident);
+	} catch (err) {
 		console.error(err);
 		return res.sendStatus(500);
 	}

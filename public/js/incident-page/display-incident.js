@@ -15,7 +15,12 @@ async function displayIncident(){
 }
 
 function incidentHtml(incident) {
-	const endButton = incident.reportedBy._id === USER_LOGGED_IN._id ? endButtonHtml(incident) : "";
+	const endButton = incident.reportedBy._id === USER_LOGGED_IN._id ? displayActionButton(incident, "end") : "";
+
+	const bystanderButton = (incident.reportedBy._id !== USER_LOGGED_IN._id && !incident.aggressors.map(user => user._id).includes(USER_LOGGED_IN._id) && !incident.bystanders.map(user => user._id).includes(USER_LOGGED_IN._id)) ? displayActionButton(incident, "help") : "";
+
+	//end => can only end when user is the reporter
+	//help => can only help when: not the reporter, not an aggressor and not already helped
 
 	return `
 			<div class="incident-labels">${incidentLabelsHtml(incident)}</div>
@@ -23,12 +28,13 @@ function incidentHtml(incident) {
 			<div class="incident-bystanders">${incidentBystandersHtml(incident)}</div>
 			<div class="incident-aggressors">${incidentAggressorsHtml(incident)}</div>
 			${endButton}
+			${bystanderButton}
 			`;
 }
 
-function endButtonHtml(incident){
+function displayActionButton(incident, action){
 	return `
-			<button id="end" data-id="${incident._id}">End incident </button>
+			<button id="${action}" data-id="${incident._id}">${action} incident </button>
 			`;
 }
 

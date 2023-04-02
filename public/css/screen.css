@@ -192,14 +192,14 @@ a:hover {
 	font-weight: bold;
 }
 
-#end {
+#end, #help {
 	background-color: yellow;
 	border: 0.1rem solid black;
 	padding: 0.5rem;
 	border-radius: 1rem;
 }
 
-#end:hover {
+#end:hover, #help:hover {
 	background-color: orange;
 }
 

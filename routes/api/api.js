@@ -9,6 +9,7 @@ router.get("/api/incidents", incidentController.getIncidents);
 router.get("/api/incident/:id", incidentController.getIncident);
 
 router.put("/api/incident/:id/end", incidentController.endIncident);
+router.put("/api/incident/:id/help", incidentController.helpIncident);
 
 router.get("/api/users/:id", userController.getUser);
 
