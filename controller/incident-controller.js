@@ -71,17 +71,25 @@ async function addIncidentToUsers(incidentId, userId, randomAggressors, req){
 
 exports.getIncidents = async (req, res) => {
 	try {
-		const incidents = await Incident.find({ ended: false })
-		.populate("reportedBy")
-		.populate("aggressors")
-		.sort({ createdAt: -1 });
+		let ended = req.query.ended;
+		let option = {};
+		if (!ended){
+			option = {ended: "false"}
+		}
+		if (ended === "all"){
+			option = {};
+		}
+		const incidents = await Incident.find(option)
+			.populate("reportedBy")
+			.populate("aggressors")
+			.populate("bystanders")
+			.sort({ createdAt: -1 });
 		return res.send(incidents);
 	} catch (err) {
 		console.error(err);
 		return res.sendStatus(500);
 	}
 };
-
 
 
 exports.getIncident = async (req, res) => {

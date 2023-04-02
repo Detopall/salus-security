@@ -203,6 +203,30 @@ a:hover {
 	background-color: orange;
 }
 
+/* PROFILE */
+
+.main-container.profile-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+
+.profile-incident .labels-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-incident .label {
+	background-color: #cc00ff;
+	margin-left: 1rem;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	color: white;
+	font-weight: bold;
+}
+
 
 /* LOGIN - REGISTER PAGE */
 
