@@ -57,23 +57,20 @@ async function validPassword(req){
 
 exports.getUsers = async (req, res) => {
 	try {
-		let searchObj = req.query;
-		if (searchObj.search){
-			searchObj = getSearchObjUsers(searchObj);
-		}
-		const results = await findUsers(searchObj);
-		res.send(results);
+		const users = await User.find().lean();
+		res.send(users);
 	} catch(err) {
 		console.error(err);
 		res.sendStatus(500);
 	}
 }
 
-
-async function findUsers(filter){
+exports.getUser = async (req, res) => {
 	try {
-		return await User.find(filter).lean();
+		const user = await User.findById(req.params.id).lean();
+		res.send(user);
 	} catch(err) {
 		console.error(err);
+		res.sendStatus(500);
 	}
 }

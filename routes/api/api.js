@@ -10,5 +10,7 @@ router.get("/api/incident/:id", incidentController.getIncident);
 
 router.put("/api/incident/:id/end", incidentController.endIncident);
 
+router.get("/api/users/:id", userController.getUser);
+
 
 module.exports = router;

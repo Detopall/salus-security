@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	incidentsReported: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
 	incidentsCaused: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
+	incidentsHelped: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
 
 }, {timestamps: true});
 
