@@ -178,7 +178,16 @@ a:hover {
 	font-weight: bold;
 }
 
+#end {
+	background-color: yellow;
+	border: 0.1rem solid black;
+	padding: 0.5rem;
+	border-radius: 1rem;
+}
 
+#end:hover {
+	background-color: orange;
+}
 
 
 /* LOGIN - REGISTER PAGE */

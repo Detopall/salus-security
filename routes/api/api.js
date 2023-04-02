@@ -8,6 +8,7 @@ router.post("/api/incidents", incidentController.createIncident);
 router.get("/api/incidents", incidentController.getIncidents);
 router.get("/api/incident/:id", incidentController.getIncident);
 
+router.put("/api/incident/:id/end", incidentController.endIncident);
 
 
 module.exports = router;

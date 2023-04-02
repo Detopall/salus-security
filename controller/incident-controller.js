@@ -49,13 +49,17 @@ async function addRandomAggressors(reporterUserId) {
 
 exports.getIncidents = async (req, res) => {
 	try {
-		const incidents = await Incident.find().populate("reportedBy").populate("aggressors").sort({createdAt: -1});
-		return res.send(incidents); 
-	} catch(err){
+		const incidents = await Incident.find({ ended: false })
+		.populate("reportedBy")
+		.populate("aggressors")
+		.sort({ createdAt: -1 });
+		return res.send(incidents);
+	} catch (err) {
 		console.error(err);
 		return res.sendStatus(500);
 	}
-}
+};
+
 
 
 exports.getIncident = async (req, res) => {
@@ -65,6 +69,17 @@ exports.getIncident = async (req, res) => {
 		return res.send(incident);
 	} catch(err) {
 		console.error(err);
-		res.sendStatus(500);
+		return res.sendStatus(500);
+	}
+}
+
+exports.endIncident = async (req, res) => {
+	try {
+		const incidentId = req.params.id;
+		const incident = await Incident.findOneAndUpdate({_id: incidentId}, {ended: true});
+		return res.send(incident);
+	} catch(err){
+		console.error(err);
+		return res.sendStatus(500);
 	}
 }

@@ -15,11 +15,20 @@ async function displayIncident(){
 }
 
 function incidentHtml(incident) {
+	const endButton = incident.reportedBy._id === USER_LOGGED_IN._id ? endButtonHtml(incident) : "";
+
 	return `
 			<div class="incident-labels">${incidentLabelsHtml(incident)}</div>
 			<div class="incident-information">${incidentInformationHtml(incident)}</div>
 			<div class="incident-bystanders">${incidentBystandersHtml(incident)}</div>
 			<div class="incident-aggressors">${incidentAggressorsHtml(incident)}</div>
+			${endButton}
+			`;
+}
+
+function endButtonHtml(incident){
+	return `
+			<button id="end" data-id="${incident._id}">End incident </button>
 			`;
 }
 
