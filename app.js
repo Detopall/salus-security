@@ -44,6 +44,7 @@ if (process.env.NODE_ENV === "development"){
 app.use('/', require('./routes/home-auth-routes'));
 app.use('/', require('./routes/api/api'));
 app.use('/', middleware.requireLogin, require('./routes/incident-routes'));
+app.use('/', middleware.requireLogin, require('./routes/profile-routes'));
 
 
 
