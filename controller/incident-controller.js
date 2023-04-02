@@ -18,10 +18,14 @@ exports.createIncident = async (req, res) => {
 		aggressors: randomAggressors
 	}
 
+
 	const incident = new Incident(incidentData);
+	await addIncidentToUsers(incident._id, userId, randomAggressors);
+
 	try {
 		await incident.save();
 		const newIncident = await Incident.findById(incident._id).populate("reportedBy").populate("aggressors");
+
 		return res.send(newIncident);
 	} catch (err){
 		console.error(err);
@@ -39,11 +43,29 @@ async function addRandomAggressors(reporterUserId) {
 
 	const allUserIdsExceptReporter = await User.find({_id: {$ne: reporterUserId}}).distinct('_id');
 
-  	// Shuffle the user ids and select the first randomAmount
+	// Shuffle the user ids and select the first randomAmount
 	const shuffledUserIds = allUserIdsExceptReporter.sort(() => Math.random() - randomShuffle);
 	const randomUserIds = shuffledUserIds.slice(0, randomAmount);
 
 	return randomUserIds;
+}
+
+async function addIncidentToUsers(incidentId, userId, randomAggressors){
+	const promises = randomAggressors.map((aggressor) => {
+		return User.findByIdAndUpdate(
+			aggressor._id,
+			{ $push: { incidentsCaused: incidentId } },
+			{ new: true }
+		);
+		});
+		await Promise.all(promises);
+
+	// Update reporter's reportedIncidents field
+	await User.findByIdAndUpdate(
+		userId,
+		{ $push: { incidentsReported: incidentId } },
+		{ new: true }
+	);
 }
 
 

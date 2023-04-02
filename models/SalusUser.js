@@ -24,8 +24,8 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	reportedIncidents: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
-	createdIncidents: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
+	incidentsReported: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
+	incidentsCaused: [{type: Schema.Types.ObjectId, ref: "SalusIncident"}],
 
 }, {timestamps: true});
 
